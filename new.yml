@@ -7,5 +7,5 @@
         - start ngin
 
   handlers:
-    - name: start nginx
+    - name: start ngin
       service: name=nginx state=started
