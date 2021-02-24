@@ -1,0 +1,33 @@
+- name: system.debug
+  value: true
+
+trigger:
+  branches:
+    include:
+      - master
+      - dev
+      - qa
+      - prod
+      
+  batch: true # no parallel builds (we have one test DB)
+
+schedules:
+- cron: "0 07 * * *"
+  displayName: Daily build
+  branches:
+    include:
+    - dev
+  always: True
+
+stages:
+  - stage: testing
+    jobs:
+      - job: Build
+        steps:
+         - checkout: self
+           fetchDepth: 10  # the depth of commits to ask Git to fetch
+         - task: ShellScript@2
+           inputs:
+             scriptPath: 'devops/azure-lab/docker/build-azure.sh'
+             args: '$(ACR_PASSWORD)'
+             disableAutoCwd: true
