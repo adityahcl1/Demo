@@ -23,7 +23,7 @@ stages:
       - job: Build
         steps:
          - checkout: self
-           fetchDepth: 10  # the depth of commits to ask Git to fetch
+           fetchDepth: 10  # the depth of commits to ask Git to fetch-1
 
          - task: Bash@3
            inputs:
