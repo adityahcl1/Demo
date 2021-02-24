@@ -60,6 +60,7 @@ stages:
         steps:
          - checkout: self
            fetchDepth: 10  # the depth of commits to ask Git to fetch
+           
          - task: ShellScript@2
            inputs:
              scriptPath: 'devops/azure-lab/docker/build-azure.sh'
