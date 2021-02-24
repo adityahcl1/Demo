@@ -26,6 +26,40 @@ stages:
         steps:
          - checkout: self
            fetchDepth: 10  # the depth of commits to ask Git to fetch
+      - name: system.debug
+  value: true
+
+trigger:
+  branches:
+    include:
+      - api
+      - dev
+      - datarelease
+      - aviva-re
+      - aviva
+      - azure/paprdom
+      - realestate
+      - realestate-api
+      - azure/hadjpha
+      - azure/helmsim
+      - azure/cucbru
+  batch: true # no parallel builds (we have one test DB)
+
+schedules:
+- cron: "0 07 * * *"
+  displayName: Daily build
+  branches:
+    include:
+    - dev
+  always: True
+
+stages:
+  - stage: build_docker_images
+    jobs:
+      - job: Build
+        steps:
+         - checkout: self
+           fetchDepth: 10  # the depth of commits to ask Git to fetch
          - task: ShellScript@2
            inputs:
              scriptPath: 'devops/azure-lab/docker/build-azure.sh'
