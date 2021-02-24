@@ -27,8 +27,9 @@ stages:
 
          - task: Bash@3
            inputs:
-           targetType: 'inline'
+             targetType: 'inline'
              script: |
-            # Write your commands here
-            
-                 echo 'Hello world'
+               # Write your commands here
+               
+               echo 'Hello world'
+          
