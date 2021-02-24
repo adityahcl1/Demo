@@ -7,7 +7,7 @@ trigger:
       - qa
       - prod
       
-  batch: true # no parallel builds (we have one test DB)
+  batch: true # no parallel builds (we have one test DB)-1
 
 schedules:
 - cron: "0 07 * * *"
