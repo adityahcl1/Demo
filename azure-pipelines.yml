@@ -27,8 +27,10 @@ stages:
          - checkout: self
            fetchDepth: 10  # the depth of commits to ask Git to fetch
 
-         - task: ShellScript@2
-           inputs:
-             scriptPath: 'devops/azure-lab/docker/build-azure.sh'
-             args: '$(ACR_PASSWORD)'
-             disableAutoCwd: true
+      - task: Bash@3
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your commands here
+            
+            echo 'Hello world'
